@@ -3,6 +3,7 @@
 Soil Wisdom is a web-based platform designed to help users determine the most suitable fertilizers for different types of soil. Whether you're a gardener, farmer, or landscaper, this website offers tailored fertilizer suggestions based on specific soil properties, such as pH, texture, and nutrient levels, to promote optimal plant growth and soil health.
 
 By providing valuable insights into soil composition, Soil Wisdom empowers users to make informed decisions, enhancing crop yields, improving soil quality, and fostering sustainable agricultural practices.
+
 **Key Features:**
 
 Soil Type Identification: Input soil details (e.g., texture, pH) to determine soil type.
