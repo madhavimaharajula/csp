@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Land Information</title>
+    <link rel="stylesheet" href="styles.css">
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    background-image: url("https://img.freepik.com/free-photo/detail-rice-plant-sunset-valencia-with-plantation-out-focus-rice-grains-plant-seed_181624-25838.jpg?size=626&ext=jpg&ga=GA1.1.1141335507.1718755200&semt=sph");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.container {
+    width: 50%;
+    margin: 0 auto;
+    background: #ace08e;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+}
+
+h1 {
+    text-align: center;
+    
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+select {
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px;
+    background: #28a745;
+    color: #f4f4f4;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #218838;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+    <div class="container">
+        <h1><font face="lucida">Land Information Form</font></h1>
+        <form id="landForm">
+            <label for="Name">Name:</label>
+            <input type="text" id="Name" name="Name" required>
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+            
+            
+            <label for="soilType">Soil Type:</label>
+            <select id="soilType" name="soilType" required>
+                <option value="">Select Soil Type</option>
+                <option value="clay">Clay</option>
+                <option value="sandy">Sandy</option>
+                <option value="silt">Silt</option>
+                <option value="peat">Peat</option>
+                <option value="red soil">red soil</option>
+                <option value="black soil">black soil</option>
+                <option value="chalk">Chalk</option>
+                <option value="loam">Loam</option>
+            </select>
+            
+            <button type="submit">Submit</button>
+        </form>
+        <div id="result"></div>
+    </div>    <script>
+        document.getElementById('landForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    var Name = document.getElementById('Name').value;
+    var location = document.getElementById('location').value;
+    var soilType = document.getElementById('soilType').value;
+    
+    var result = document.getElementById('result');
+    var landDetails = getLandDetails(Name, location, soilType);
+    
+    result.innerHTML = `
+        <h2>Land Details</h2>
+        <p><strong>Name:</strong> ${landDetails.name}</p>
+        <p><strong>Location:</strong> ${landDetails.location}</p>
+        <p><strong>Soil Type:</strong> ${landDetails.soilType}</p>
+        <p><strong>Details:</strong> ${landDetails.details}</p>
+        <p><strong>Recommended Fertilizers:</strong> ${landDetails.fertilizers.join(', ')}</p>
+    `;
+});
+
+function getLandDetails(Name, location, soilType) {
+    // Dummy data for demonstration purposes
+    var soilData = {
+        'clay': {
+            details: 'Clay soil is heavy and can be easily compacted.',
+            fertilizers: ['Compost', 'Manure', 'Phosphorus']
+        },
+        'sandy': {
+            details: 'Sandy soil is light, warm, and dry.',
+            fertilizers: ['Nitrogen', 'Organic fertilizers', 'Green manure']
+        },
+        'silt': {
+            details: 'Silt soil is fertile, light but moisture-retentive.',
+            fertilizers: ['Potassium', 'Phosphorus', 'Organic matter']
+        },
+        'peat': {
+            details: 'Peat soil is high in organic matter and moisture.',
+            fertilizers: ['Lime', 'Organic fertilizers', 'Compost']
+        },
+        'red soil': {
+            details: 'red soil is high iron content aluminum oxide and acidic in nature and prone to erosion.',
+            fertilizers: ['compost or well-rotted manure to improve soil structure and and fertility','green manuring with legumes like cowpea,sunn hemp']
+        },
+        'black soil': {
+            details: 'black soil is high in organic matter,Rich in nutrients like nitrogen,fertility and productive.',
+            fertilizers: ['Organic fertilizers', 'Compost','Manure','potting mixture']
+        },
+        'chalk': {
+            details: 'Chalk soil is alkaline and free-draining.',
+            fertilizers: ['Sulphur', 'Compost', 'Organic fertilizers']
+        },
+        'loam': {
+            details: 'Loam soil is a mix of sand, silt, and clay.',
+            fertilizers: ['Balanced fertilizers', 'Organic matter', 'Compost']
+        }
+    };
+    
+    var landDetails = {
+        name: Name,
+        location: location,
+        soilType: soilType,
+        details: soilData[soilType].details,
+        fertilizers: soilData[soilType].fertilizers
+    };
+    
+    return landDetails;
+}
+    </script>
+</body>
+</html>
